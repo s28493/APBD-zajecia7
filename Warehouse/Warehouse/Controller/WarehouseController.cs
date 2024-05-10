@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Warehouse.Models;
-using Warehouse.Services;
+using Warehouse.Model;
+using Warehouse.Service;
 
 namespace Warehouse.Controllers;
 
@@ -16,9 +16,9 @@ public class WarehouseController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddProductToWarehouse(WarehouseRquest request)
+    public async Task<IActionResult> AddProductToWarehouse(WarehouseRequest request)
     {
-        int affectedCount = _warehouseService.AddProductToWarehouse(request);
-        return StatusCode(StatusCodes.Status201Created);
+        int id = await _warehouseService.AddProductToWarehouse(request);
+        return Ok("Wstawione id to: " + id);
     }
 }

@@ -1,5 +1,6 @@
 using Warehouse.Repositories;
-using Warehouse.Services;
+using Warehouse.Service;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepositoriy>();
-builder.Services.AddScoped<IProductWarehouseRepository, ProductWarehouseRepository>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
+builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 
 
 var app = builder.Build();
